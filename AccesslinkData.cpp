@@ -1,15 +1,14 @@
 #include "AccesslinkData.hpp"
 
 #include <fstream>
-#include <iostream>
 #include <sstream>
 
 AccesslinkData::AccesslinkData(std::string fileName)
 {
-    fileData = readDataFile(fileName);
+    clientInfo = readDataFile(fileName);
 }
 
-AccesslinkInfo AccesslinkData::readDataFile(const std::string& fileName) const
+ClientInfo AccesslinkData::readDataFile(const std::string& fileName) const
 {
     std::ifstream file(fileName);
     if (!file.is_open())
@@ -19,7 +18,7 @@ AccesslinkInfo AccesslinkData::readDataFile(const std::string& fileName) const
     buffer << file.rdbuf();
     std::string json = buffer.str();
 
-    AccesslinkInfo info;
+    ClientInfo info;
     info.clientId = getValue(json, "client_id");
     info.clientSecret = getValue(json, "client_secret");
     info.redirectUri = getValue(json, "redirect_uri");

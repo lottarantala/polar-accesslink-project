@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 
-struct AccesslinkInfo
+struct ClientInfo
 {
     std::string clientId;
     std::string clientSecret;
@@ -12,10 +12,9 @@ class AccesslinkData
 {
 public:
     AccesslinkData(std::string fileName);
-    AccesslinkInfo fileData;
+    ClientInfo clientInfo;
 
 private:
-
-    AccesslinkInfo readDataFile(const std::string& fileName) const;
+    ClientInfo readDataFile(const std::string& fileName) const;
     std::string getValue(const std::string& json, const std::string& key) const;
 };
